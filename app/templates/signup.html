@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+.left {
+    width: 30%;
+    float: left;
+    text-align: right;
+}
+.right {
+    width: 65%;
+    margin-left: 10px;
+    float:left;
+}
+
+</style>
+<h1>Sign In</h1>
+    <form style = "width: 40%" action="" method="post" name="login">
+        {{ form.hidden_tag() }}
+        {% from "_formhelpers.html" import render_field %}
+        <div class = "left">
+            Username
+        </div>
+        <div class = "right">
+            {{ form.username }}
+        </div>
+        <br>
+        <div class = "left">
+            Email:
+        </div>
+        <div class = "right">
+            {{ form.email }}
+        </div>
+        <br>
+        <div class = "left">
+            Password:
+        </div>
+        <div class = "right">
+            {{ form.password }}
+        </div>
+        <br>
+        <div class = "left">
+            Re-type Password:
+        </div>
+        <div class = "right">
+            {{ form.confirm }}
+        </div>
+        <br>
+        <div class = "left">
+            Remember me:
+        </div>
+        <div class = "right">
+            {{ form.remember_me}}
+        </div>
+        <div class = "right">
+            <input type="submit" value="Sign In">
+        </div>
+    </form>
+{% endblock %}

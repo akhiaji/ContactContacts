@@ -1,0 +1,17 @@
+.container{
+    border-style: solid;
+    border-width: 5px;
+    float: center;
+}
+.left {
+    border-style: solid;
+    border-width: 5px;
+    float: left;
+    text-align: right;
+}
+.right {
+    border-style: solid;
+    border-width: 5px;
+    margin-left: 10px;
+    float:left;
+}
