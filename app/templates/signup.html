@@ -1,57 +1,106 @@
 {% extends "base.html" %}
 {% block content %}
 <style>
+.backgroundShit {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -40px;
+    bottom: -40px;
+    width: auto;
+    height: auto;
+    background-image: url(login-background.png);
+    background-size: cover;
+    z-index: 0;
+}
 .left {
-    width: 30%;
+    position: absolute;
+    top: calc(35% - 25px);
+    left: calc(50% - 185px);
+    z-index: 2;
     float: left;
-    text-align: right;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 320%;
 }
 .right {
+    position: absolute;
+    top: calc(50% - 175px);
+    left: calc(50% - 50px);
+    height: 150px;
+    width: 350px;
+    padding: 10px;
+    z-index: 2;
+}
+.fields {
     width: 65%;
     margin-left: 10px;
     float:left;
+    width: 250px;
+    height: 30px;
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 2px;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 4px;
+    margin-top: 10px;
+}
+.right input[type=button] {
+    width: 260px;
+    height: 35px;
+    background: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    color: #6aaafd;
+    font-family: 'Exo', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 6px;
+    margin-top: 10px;
+    margin-left: 10px;
 }
 
 </style>
-<h1>Sign In</h1>
-    <form style = "width: 40%" action="" method="post" name="login">
-        {{ form.hidden_tag() }}
-        <div class = "left">
-            Username
-        </div>
-        <div class = "right">
-            {{ form.username }}
-        </div>
+<div class = "backgroundShit">
+    <div class = "left"> Username
         <br>
-        <div class = "left">
-            Email:
-        </div>
-        <div class = "right">
-            {{ form.email }}
-        </div>
+        Email
         <br>
-        <div class = "left">
-            Password:
-        </div>
-        <div class = "right">
-            {{ form.password }}
-        </div>
+        Password
         <br>
-        <div class = "left">
-            Re-type Password:
-        </div>
-        <div class = "right">
-            {{ form.confirm }}
-        </div>
+        Re-type password
         <br>
-        <div class = "left">
-            Remember me:
-        </div>
-        <div class = "right">
-            {{ form.remember_me}}
-        </div>
-        <div class = "right">
-            <input type="submit" value="Sign In">
-        </div>
-    </form>
+        Remember me
+    </div>
+    <div class = "right">
+        <form style = "width: 40%" action="" method="post" name="login">
+            {{ form.hidden_tag() }}
+            <div class = "fields">
+                {{ form.username }}
+            </div>
+            <br>
+            <div class = "fields">
+                {{ form.email }}
+            </div>
+            <br>
+            <div class = "fields">
+                {{ form.password }}
+            </div>
+            <br>
+            <div class = "fields">
+                {{ form.confirm }}
+            </div>
+            <br>
+            <div>
+                {{ form.remember_me}}
+            </div>
+            <input type="button" value="Sign Up">
+        </form>
+    </div>
 {% endblock %}
