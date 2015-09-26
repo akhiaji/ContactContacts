@@ -4,7 +4,7 @@
 @import url(http://fonts.googleapis.com/css?family=Exo:100,200,400);
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
 
-.grad {
+.backgroundShit {
     position: absolute;
     top: -20px;
     left: -20px;
@@ -14,8 +14,19 @@
     height: auto;
     background-image: url(login-background.png);
     background-size: cover;
-    -webkit-filter: blur(105px);
     z-index: 0;
+}
+
+.header{
+    position: absolute;
+    top: calc(50% - 35px);
+    left: calc(50% - 315px);
+    z-index: 2;
+    float: left;
+    color: #fff;
+    font-family: 'Exo', sans-serif;
+    font-size: 35px;
+    font-weight: 200;
 }
 
 .login{
@@ -43,20 +54,19 @@
     margin-top: 10px;
 }
 
-.usernameField {
-    width: 250px;
-    height: 30px;
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.6);
-    border-radius: 2px;
-    color: #fff;
-    font-family: 'Exo', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
-    padding: 4px;
+.login input[type=button]:hover{
+    opacity: 0.9;
 }
 
-.passwordField {
+.login input[type=button]:active{
+    opacity: 0.7;
+}
+
+.login input[type=button]:focus{
+    outline: none;
+}
+
+.fields {
     width: 250px;
     height: 30px;
     background: transparent;
@@ -70,41 +80,17 @@
     margin-top: 10px;
 }
 
-.login input[type=button]:hover{
-    opacity: 0.8;
-}
-
-.login input[type=button]:active{
-    opacity: 0.6;
-}
-
-.login input[type=button]:focus{
-    outline: none;
-}
-
-.header{
-    position: absolute;
-    top: calc(50% - 35px);
-    left: calc(50% - 315px);
-    z-index: 2;
-    float: left;
-    color: #fff;
-    font-family: 'Exo', sans-serif;
-    font-size: 35px;
-    font-weight: 200;
-}
-
 </style>
-<div class = "grad">
+<div class = "backgroundShit">
     <div class = "header">ContactContacts</div>
     <div class = "login">
         <form action="" method="post" name="login">
             {{ form.hidden_tag() }}
             <br>
-            <div class = "usernameField">
+            <div class = "fields">
                 {{ form.username }}
             </div>
-            <div class = "passwordField">
+            <div class = "fields">
                 {{ form.password }}
             </div>
             <input type="button" value="Sign In">
