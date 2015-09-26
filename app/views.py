@@ -6,6 +6,7 @@ from .models import User, File
 from .authMethods import get_auth_flow, get_gd_auth_flow
 import pickle
 import httplib2
+import requests
 from googleapiclient.discovery import build
 from datetime import datetime
 from dropbox.client import DropboxClient, DropboxOAuth2Flow
@@ -58,9 +59,16 @@ def before_request():
     g.user = current_user
 
 @login_required
-@app.route('/dropbox-auth-start')
-def dropbox_auth_start():
-    return redirect(get_auth_flow().start())
+@app.route('/linkedin-auth-start')
+def linkdin_auth_start():
+    redirect_url = "https://www.linkedin.com/uas/oauth2/authorization"
+    params = {
+        "response_type": "code",
+        "client_id": "775j1baz7a7t2c",
+        "redirect_uri": url_for('linkdin_oauth_finish'),
+        "state": "DCEeFWf45A53sdfKef424"
+    }
+    return redirect(redirect_url, params = params)
 
 @app.route('/user/<username>', methods = ['GET', 'POST'])
 @login_required
@@ -70,7 +78,7 @@ def user(username):
         return redirect(url_for('index'))
     if request.method == 'POST':
         if request.form.get('db_in') == "Log In":
-            return redirect(url_for('dropbox_auth_start'))
+            return redirect(url_for('linkdin_auth_start'))
         elif request.form.get('db_in') == "Log Out":
             return redirect(url_for('account_logout', source = "db"))
         if request.form.get('gd_in') == "Log In":
@@ -99,13 +107,14 @@ def google_auth_finish():
     user = User.query.filter_by(username = current_user.username).first()
     return redirect(url_for("user", username = username))
 
-@app.route('/dropbox-auth-finish')
-def dropbox_auth_finish():
-    username = current_user.username
-    access_token, user_id, url_state = get_auth_flow().finish(request.args)
-    user = User.query.filter_by(username = username).first()
-    user.db_access_token = access_token
-    db.session.commit()
+@app.route('/linkedin-oauth-finish')
+def linkdin_oauth_finish():
+    print "YOLO"
+    # username = current_user.username
+    # access_token, user_id, url_state = get_auth_flow().finish(request.args)
+    # user = User.query.filter_by(username = username).first()
+    # user.db_access_token = access_token
+    # db.session.commit()
     return redirect(url_for("user", username = username))
 
 @login_required
